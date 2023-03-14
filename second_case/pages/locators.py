@@ -27,5 +27,8 @@ BLANK_NAME_ERROR = (By.XPATH,"//div/span[text()=\"Please enter first name\"]")
 # Enter phone error message
 BLANK_PHONE_ERROR = (By.XPATH,"//div/span[text()=\"Please enter phone number\"]")
 
+# Blank door count error message
+BLANK_DOOR_COUNT_ERROR = (By.XPATH,"//div/span[text()=\"Please complete this required field\"]")
+
 # Invalid phone error message
 INVALID_PHONE_ERROR = (By.XPATH,"//div/span[text()=\"Please enter valid phone number\"]")

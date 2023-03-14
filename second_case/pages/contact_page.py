@@ -20,7 +20,7 @@ class ContactPage(BasePage):
         phone = self.driver.find_element(*PHONE_INPUT)
         return phone.is_displayed()
     
-    def door_count_is_displayed(self):
+    def door_count_input_is_displayed(self):
         door_count = self.driver.find_element(*EMAIL_INPUT)
         return door_count.is_displayed()
     
@@ -58,6 +58,9 @@ class ContactPage(BasePage):
     
     def enter_phone_error_is_displayed(self):
         return self.driver.find_element(*BLANK_PHONE_ERROR).is_displayed()
+    
+    def blank_door_count_error_is_displayed(self):
+        return self.driver.find_element(*BLANK_DOOR_COUNT_ERROR).is_displayed()
     
     def invalid_phone_error_is_displayed(self):
         return self.driver.find_element(*INVALID_PHONE_ERROR).is_displayed()

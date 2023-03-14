@@ -37,7 +37,7 @@ def test_contact_form_is_available():
     assert contact_page.last_name_input_is_displayed()
     assert contact_page.email_input_is_displayed()
     assert contact_page.phone_input_is_displayed()
-    assert contact_page.door_count_is_displayed()
+    assert contact_page.door_count_input_is_displayed()
 
 # Test case: Verify that contact form cannot be submitted without name
 def test_contact_form_cannot_be_submitted_without_name():
@@ -49,6 +49,16 @@ def test_contact_form_cannot_be_submitted_without_name():
 
     assert not contact_page.submit_button_is_enabled()
     assert contact_page.enter_name_error_is_displayed()
+
+# Test case: Verify that contact form cannot be submitted without door count
+def test_contact_form_cannot_be_submitted_without_phone_number():
+    contact_page.fill_first_name_field(first_name)
+    contact_page.fill_first_name_field(last_name)
+    contact_page.fill_email_field(email)
+    contact_page.fill_phone_field(phone_number)
+    contact_page.fill_door_count_field(blank_value)
+    assert not contact_page.submit_button_is_enabled()
+    assert contact_page.blank_door_count_error_is_displayed()
 
 # Test case: Verify that contact form cannot be submitted without phone number
 def test_contact_form_cannot_be_submitted_without_phone_number():
