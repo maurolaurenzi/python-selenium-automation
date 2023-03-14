@@ -1,0 +1,10 @@
+{
+    "blank_value": " ",
+    "door_count": 9,
+    "email": "jperez@example.com",
+    "first_name": "Juan",
+    "invalid_phone_number": "123",
+    "last_name": "Perez",
+    "phone_number": "123-456-7890"
+    
+}
