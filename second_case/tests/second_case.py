@@ -51,7 +51,7 @@ def test_contact_form_cannot_be_submitted_without_name():
     assert contact_page.enter_name_error_is_displayed()
 
 # Test case: Verify that contact form cannot be submitted without door count
-def test_contact_form_cannot_be_submitted_without_phone_number():
+def test_contact_form_cannot_be_submitted_without_door_count():
     contact_page.fill_first_name_field(first_name)
     contact_page.fill_first_name_field(last_name)
     contact_page.fill_email_field(email)
