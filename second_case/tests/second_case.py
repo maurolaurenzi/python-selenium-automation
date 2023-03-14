@@ -46,7 +46,6 @@ def test_contact_form_cannot_be_submitted_without_name():
     contact_page.fill_email_field(email)
     contact_page.fill_phone_field(phone_number)
     contact_page.fill_door_count_field(door_count)
-
     assert not contact_page.submit_button_is_enabled()
     assert contact_page.enter_name_error_is_displayed()
 

@@ -4,6 +4,7 @@ from pages.base_page import *
 from selenium.webdriver.common.keys import Keys
 
 class ContactPage(BasePage):
+    # Methods to check if the fields are displayed
     def first_name_input_is_displayed(self):
         first_name = self.driver.find_element(*FIRST_NAME_INPUT)
         return first_name.is_displayed()
@@ -24,6 +25,7 @@ class ContactPage(BasePage):
         door_count = self.driver.find_element(*EMAIL_INPUT)
         return door_count.is_displayed()
     
+    # Method to remove any charachter that the field might have, it returns the input field empty
     def clear_field(self, input_field):
         field = self.driver.find_element(*input_field)
         field.click()
@@ -32,7 +34,7 @@ class ContactPage(BasePage):
             field.send_keys(Keys.BACKSPACE)
         return field
     
-    #For the "fill" methods, we first clear the field and then send the input
+    # Methods to fill the fields: we first clear the field and then send the input
     def fill_first_name_field(self, input):
         first_name = self.clear_field(FIRST_NAME_INPUT)
         first_name.send_keys(input)
@@ -52,7 +54,8 @@ class ContactPage(BasePage):
     def fill_door_count_field(self, input):
         door_count = self.clear_field(DOOR_COUNT_INPUT)
         door_count.send_keys(input)
-    
+
+    # Methods to check if the error messages are displayed
     def enter_name_error_is_displayed(self):
         return self.driver.find_element(*BLANK_NAME_ERROR).is_displayed()
     
@@ -65,5 +68,6 @@ class ContactPage(BasePage):
     def invalid_phone_error_is_displayed(self):
         return self.driver.find_element(*INVALID_PHONE_ERROR).is_displayed()
     
+    # Method to check if the submit button is available
     def submit_button_is_enabled(self):
         return self.driver.find_element(*SUBMIT_BTN).is_enabled()
