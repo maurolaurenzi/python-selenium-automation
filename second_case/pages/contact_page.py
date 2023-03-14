@@ -1,15 +1,9 @@
 # page.py
 from pages.locators import *
+from pages.base_page import *
 from selenium.webdriver.common.keys import Keys
 
-class ContactPage:
-    def __init__(self, driver):
-        self.driver = driver
-
-    def go_to_contact_form(self):
-        talk_with_us_btn = self.driver.find_element(*TALK_WITH_US_BTN)
-        talk_with_us_btn.click()
-
+class ContactPage(BasePage):
     def first_name_input_is_displayed(self):
         first_name = self.driver.find_element(*FIRST_NAME_INPUT)
         return first_name.is_displayed()
