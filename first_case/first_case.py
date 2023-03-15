@@ -24,8 +24,6 @@ def obtain_image(image):
 # initializing
 driver = webdriver.Chrome()
 
-driver.maximize_window()
-
 wait = WebDriverWait(driver, 10)
 
 # going to website
