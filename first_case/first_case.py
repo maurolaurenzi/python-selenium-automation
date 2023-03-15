@@ -15,7 +15,6 @@ def download_image(img_element, i):
         response = requests.get(src_value)
         with open(f"memes/images {i+1}.jpg", "wb") as f:
           f.write(response.content)
-        print(f"URL: {src_value}")
 
 # function for obtaining the img element after scrolling to it
 def obtain_image(image):
@@ -42,6 +41,7 @@ posts = driver.find_elements(By.XPATH,"//*[contains(@class, 'mu-card') and conta
 # setting the number of images we want to find
 num_images = 10
 
+# iterating through the first 10 images and downloading them
 for i in range(0,num_images):
   img_element = obtain_image(posts[i])
   try:
