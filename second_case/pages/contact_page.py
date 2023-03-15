@@ -59,19 +59,19 @@ class ContactPage(BasePage):
 
     # Methods to check if the error messages are displayed
     def enter_name_error_is_displayed(self):
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(BLANK_NAME_ERROR))
+        self.wait_until_element_present(BLANK_NAME_ERROR)
         return self.driver.find_element(*BLANK_NAME_ERROR).is_displayed()
     
     def enter_phone_error_is_displayed(self):
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(BLANK_PHONE_ERROR))
+        self.wait_until_element_present(BLANK_PHONE_ERROR)
         return self.driver.find_element(*BLANK_PHONE_ERROR).is_displayed()
     
     def blank_door_count_error_is_displayed(self):
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(BLANK_DOOR_COUNT_ERROR))
+        self.wait_until_element_present(BLANK_DOOR_COUNT_ERROR)
         return self.driver.find_element(*BLANK_DOOR_COUNT_ERROR).is_displayed()
     
     def invalid_phone_error_is_displayed(self):
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(INVALID_PHONE_ERROR))
+        self.wait_until_element_present(INVALID_PHONE_ERROR)
         return self.driver.find_element(*INVALID_PHONE_ERROR).is_displayed()
     
     # Method to check if the submit button is available
@@ -79,5 +79,8 @@ class ContactPage(BasePage):
         return self.driver.find_element(*SUBMIT_BTN).is_enabled()
     
     def wait_until_submit_button_is_available(self):
-        submit_button = self.driver.find_element(*SUBMIT_BTN)
-        WebDriverWait(self.driver, 10).until(lambda driver: submit_button.is_enabled())
+        WebDriverWait(self.driver, 10).until(lambda driver: self.submit_button_is_enabled())
+    
+    # Method to wait until an element is present (not visible) in the DOM
+    def wait_until_element_present(self, element):
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(element))
