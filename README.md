@@ -21,8 +21,8 @@ Pip should come pre-installed with Python 3.x, but if it does not, you can insta
 
 You can install Requests and Selenium using pip:
 
-pip3 install requests
-pip3 install selenium
+`pip3 install requests`
+`pip3 install selenium`
 
 
 ### ChromeDriver
