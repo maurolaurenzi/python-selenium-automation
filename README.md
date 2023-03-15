@@ -43,6 +43,7 @@ To install ChromeDriver, you can download it from the following link: https://si
 - The script will create a 'memes' folder if it doesn't already exist.
 - The number of images to scrape can be changed by modifying the `num_images` variable in the script.
 
+
 # Second Case - Proper.AI Contact Form Testing
 
 This codebase contains test cases for Proper.AI's contact form using Python and Selenium.
