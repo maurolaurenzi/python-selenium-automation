@@ -18,13 +18,17 @@ last_name = test_data['last_name']
 phone_number = test_data['phone_number']
 
 #Setting up driver and page objects
-driver = webdriver.Chrome()
+options = webdriver.ChromeOptions()
+options.add_experimental_option("useAutomationExtension", False)
+options.add_experimental_option("excludeSwitches",["enable-automation"])
+driver = webdriver.Chrome(options=options)
 home_page = HomePage(driver)
 contact_page = ContactPage(driver)
 
 # Test setup
 def setup_module(module):
     driver.get('https://proper.ai/')
+    driver.maximize_window()
     home_page.go_to_contact_form()
 
 # Test teardown
@@ -46,8 +50,8 @@ def test_contact_form_cannot_be_submitted_without_name():
     contact_page.fill_email_field(email)
     contact_page.fill_phone_field(phone_number)
     contact_page.fill_door_count_field(door_count)
-    assert not contact_page.submit_button_is_enabled()
     assert contact_page.enter_name_error_is_displayed()
+    assert not contact_page.submit_button_is_enabled()
 
 # Test case: Verify that contact form cannot be submitted without door count
 def test_contact_form_cannot_be_submitted_without_door_count():
@@ -56,8 +60,8 @@ def test_contact_form_cannot_be_submitted_without_door_count():
     contact_page.fill_email_field(email)
     contact_page.fill_phone_field(phone_number)
     contact_page.fill_door_count_field(blank_value)
-    assert not contact_page.submit_button_is_enabled()
     assert contact_page.blank_door_count_error_is_displayed()
+    assert not contact_page.submit_button_is_enabled()
 
 # Test case: Verify that contact form cannot be submitted without phone number
 def test_contact_form_cannot_be_submitted_without_phone_number():
@@ -66,8 +70,8 @@ def test_contact_form_cannot_be_submitted_without_phone_number():
     contact_page.fill_email_field(email)
     contact_page.fill_phone_field(blank_value)
     contact_page.fill_door_count_field(door_count)
-    assert not contact_page.submit_button_is_enabled()
     assert contact_page.enter_phone_error_is_displayed()
+    assert not contact_page.submit_button_is_enabled()
 
 # Test case: Verify that contact form cannot be submitted with invalid phone number
 def test_contact_form_cannot_be_submitted_with_invalid_phone_number():
@@ -76,8 +80,8 @@ def test_contact_form_cannot_be_submitted_with_invalid_phone_number():
     contact_page.fill_email_field(email)
     contact_page.fill_phone_field(invalid_phone_number)
     contact_page.fill_door_count_field(door_count)
-    assert not contact_page.submit_button_is_enabled()
     assert contact_page.invalid_phone_error_is_displayed()
+    assert not contact_page.submit_button_is_enabled()
 
 # Test case: Verify that submit button is available when everything is filled out correctly
 def test_submit_button_is_available():
@@ -86,5 +90,6 @@ def test_submit_button_is_available():
     contact_page.fill_email_field(email)
     contact_page.fill_phone_field(phone_number)
     contact_page.fill_door_count_field(door_count)
+    contact_page.wait_until_submit_button_is_available()
     assert contact_page.submit_button_is_enabled()
 

@@ -2,6 +2,8 @@
 from pages.locators import *
 from pages.base_page import *
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class ContactPage(BasePage):
     # Methods to check if the fields are displayed
@@ -57,17 +59,25 @@ class ContactPage(BasePage):
 
     # Methods to check if the error messages are displayed
     def enter_name_error_is_displayed(self):
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(BLANK_NAME_ERROR))
         return self.driver.find_element(*BLANK_NAME_ERROR).is_displayed()
     
     def enter_phone_error_is_displayed(self):
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(BLANK_PHONE_ERROR))
         return self.driver.find_element(*BLANK_PHONE_ERROR).is_displayed()
     
     def blank_door_count_error_is_displayed(self):
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(BLANK_DOOR_COUNT_ERROR))
         return self.driver.find_element(*BLANK_DOOR_COUNT_ERROR).is_displayed()
     
     def invalid_phone_error_is_displayed(self):
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(INVALID_PHONE_ERROR))
         return self.driver.find_element(*INVALID_PHONE_ERROR).is_displayed()
     
     # Method to check if the submit button is available
     def submit_button_is_enabled(self):
         return self.driver.find_element(*SUBMIT_BTN).is_enabled()
+    
+    def wait_until_submit_button_is_available(self):
+        submit_button = self.driver.find_element(*SUBMIT_BTN)
+        WebDriverWait(self.driver, 10).until(lambda driver: submit_button.is_enabled())
