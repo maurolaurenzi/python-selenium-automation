@@ -9,6 +9,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 # function for extracting the URL of the img element and saving it locally
 def download_image(img_element, i):
     wait.until(EC.element_to_be_clickable(img_element))
+    wait.until(lambda driver: img_element.get_attribute("src").startswith("https:"))
     src_value = img_element.get_attribute("src")
 
     if src_value and not src_value.startswith("data:"):
