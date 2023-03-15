@@ -78,8 +78,11 @@ class ContactPage(BasePage):
     def submit_button_is_enabled(self):
         return self.driver.find_element(*SUBMIT_BTN).is_enabled()
     
-    def wait_until_submit_button_is_available(self):
+    def wait_until_submit_button_is_available(self, is_enabled=True):
+      if is_enabled:
         WebDriverWait(self.driver, 10).until(lambda driver: self.submit_button_is_enabled())
+      else:
+        WebDriverWait(self.driver, 10).until_not(lambda driver: self.submit_button_is_enabled())
     
     # Method to wait until an element is present (not visible) in the DOM
     def wait_until_element_present(self, element):

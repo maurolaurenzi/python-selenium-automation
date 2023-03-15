@@ -28,6 +28,7 @@ wait = WebDriverWait(driver, 10)
 
 # going to website
 driver.get("https://icanhas.cheezburger.com/")
+driver.maximize_window()
 
 # creating 'memes' folder if it doesn't already exist
 if not os.path.exists('memes'):
