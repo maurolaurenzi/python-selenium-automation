@@ -7,14 +7,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException
 
 # function for extracting the URL of the img element and saving it locally
-def download_image(img_element, i):
+def download_image(img_element, img_index):
     wait.until(EC.element_to_be_clickable(img_element))
     wait.until(lambda driver: img_element.get_attribute("src").startswith("https:"))
     src_value = img_element.get_attribute("src")
 
     if src_value and not src_value.startswith("data:"):
         response = requests.get(src_value)
-        with open(f"memes/images {i+1}.jpg", "wb") as f:
+        with open(f"memes/images {img_index+1}.jpg", "wb") as f:
           f.write(response.content)
 
 # function for obtaining the img element after scrolling to it
@@ -51,5 +51,4 @@ for i in range(0,num_images):
           img_element = obtain_image(posts[i])
           download_image(img_element,i)
 
-# closing the browser
-driver.quit()
+
