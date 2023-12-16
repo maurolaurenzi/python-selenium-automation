@@ -1,6 +1,6 @@
 # First Case - Memes Scraper
 
-This is a Python script that scrapes images from the main page of the icanhas.cheezburger.com website and saves them locally. It uses the Requests and Selenium libraries.
+This is a Python script that scrapes images from the main page of the icanhas.cheezburger.com website and saves them locally. It uses the Requests library to download and store the images and the Selenium framework to interact with the browser.
 
 ## Dependencies
 
@@ -35,7 +35,7 @@ To install ChromeDriver, you can download it from the following link: https://si
 
 1. Make sure you have all the dependencies installed.
 2. Clone the repository and navigate to the project directory.
-3. Run the command `python memes_scraper.py`.
+3. Run the command `python3 first_case/memes_scraper.py`.
 4. The script will scrape the first 10 images from the main page of icanhas.cheezburger.com and save them in a 'memes' folder.
 
 ## Notes
