@@ -29,7 +29,7 @@ You can install Requests and Selenium using pip:
 
 ### ChromeDriver
 
-To install ChromeDriver, you can download it from the following link: https://sites.google.com/a/chromium.org/chromedriver/downloads
+To install ChromeDriver, you can download it from the following link: https://chromedriver.chromium.org/downloads
 
 ## How to Run
 
