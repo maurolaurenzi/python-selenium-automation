@@ -2,6 +2,8 @@ from selenium import webdriver
 from pages.locators import *
 from pages.home_page import *
 from pages.contact_page import *
+from tests.commons import *
+
 import json
 
 # Load the test data from the JSON file
@@ -9,19 +11,20 @@ with open('data/test_data.json', 'r') as f:
     test_data = json.load(f)
 
 # Extract the data from the JSON object
-blank_value = test_data['blank_value']
 door_count = test_data['door_count']
 email = test_data['email']
 first_name = test_data['first_name']
-invalid_phone_number = test_data['invalid_phone_number']
 last_name = test_data['last_name']
 phone_number = test_data['phone_number']
+residential_asset = test_data['residential_asset']
+appfolio_software = test_data['appfolio_software']
 
 #Setting up driver and page objects
 options = webdriver.ChromeOptions()
 options.add_experimental_option("useAutomationExtension", False)
 options.add_experimental_option("excludeSwitches",["enable-automation"])
 driver = webdriver.Chrome(options=options)
+driver.implicitly_wait(10)
 home_page = HomePage(driver)
 contact_page = ContactPage(driver)
 
@@ -35,24 +38,33 @@ def setup_module(module):
 def teardown_module(module):
     driver.quit()
 
-# Test case: Verify that contact form is available
+form_elements = [
+        FIRST_NAME_INPUT,
+        LAST_NAME_INPUT,
+        EMAIL_INPUT,
+        PHONE_INPUT,
+        ASSET_CLASS_DROPDOWN,
+        SOFTWARE_DROPDOWN,
+        SUBMIT_BTN,
+        CLOSE_BTN
+    ]
+
+# Test case: Verify that all elements from contact form are displayed
 def test_contact_form_is_available():
-    assert contact_page.first_name_input_is_displayed()
-    assert contact_page.last_name_input_is_displayed()
-    assert contact_page.email_input_is_displayed()
-    assert contact_page.phone_input_is_displayed()
-    assert contact_page.door_count_input_is_displayed()
+    for element in form_elements:
+        assert is_displayed(driver, element)
 
 # Test case: Verify that contact form cannot be submitted without name
 def test_contact_form_cannot_be_submitted_without_name():
-    contact_page.fill_first_name_field(blank_value)
     contact_page.fill_last_name_field(last_name)
     contact_page.fill_email_field(email)
     contact_page.fill_phone_field(phone_number)
+    contact_page.select_asset_class(residential_asset)
     contact_page.fill_door_count_field(door_count)
-    contact_page.wait_until_submit_button_is_available(False)
-    assert not contact_page.submit_button_is_enabled()
-    assert contact_page.enter_name_error_is_displayed()
+    contact_page.select_software_used(appfolio_software)
+    # Given there isnt a persistent error message, we validate that the first name field is still displayed after clicking submit
+    contact_page.submit_form()
+    assert is_displayed(driver, FIRST_NAME_INPUT)
 
 # Test case: Verify that contact form cannot be submitted without door count
 def test_contact_form_cannot_be_submitted_without_door_count():
@@ -60,40 +72,21 @@ def test_contact_form_cannot_be_submitted_without_door_count():
     contact_page.fill_first_name_field(last_name)
     contact_page.fill_email_field(email)
     contact_page.fill_phone_field(phone_number)
-    contact_page.fill_door_count_field(blank_value)
-    contact_page.wait_until_submit_button_is_available(False)
-    assert not contact_page.submit_button_is_enabled()
-    assert contact_page.blank_door_count_error_is_displayed()
+    contact_page.select_asset_class(residential_asset)
+    contact_page.select_software_used(appfolio_software)
+    # Given there isnt a persistent error message, we validate that the first name field is still displayed after clicking submit
+    contact_page.submit_form()
+    assert is_displayed(driver, FIRST_NAME_INPUT)
 
 # Test case: Verify that contact form cannot be submitted without phone number
 def test_contact_form_cannot_be_submitted_without_phone_number():
     contact_page.fill_first_name_field(first_name)
     contact_page.fill_first_name_field(last_name)
     contact_page.fill_email_field(email)
-    contact_page.fill_phone_field(blank_value)
-    contact_page.fill_door_count_field(door_count)
-    contact_page.wait_until_submit_button_is_available(False)
-    assert not contact_page.submit_button_is_enabled()
-    assert contact_page.enter_phone_error_is_displayed()
+    contact_page.select_asset_class(residential_asset)
+    contact_page.select_software_used(appfolio_software)
+    # Given there isnt a persistent error message, we validate that the first name field is still displayed after clicking submit
+    contact_page.submit_form()
+    assert is_displayed(driver, FIRST_NAME_INPUT)
 
-# Test case: Verify that contact form cannot be submitted with invalid phone number
-def test_contact_form_cannot_be_submitted_with_invalid_phone_number():
-    contact_page.fill_first_name_field(first_name)
-    contact_page.fill_first_name_field(last_name)
-    contact_page.fill_email_field(email)
-    contact_page.fill_phone_field(invalid_phone_number)
-    contact_page.fill_door_count_field(door_count)
-    contact_page.wait_until_submit_button_is_available(False)
-    assert not contact_page.submit_button_is_enabled()
-    assert contact_page.invalid_phone_error_is_displayed()
-
-# Test case: Verify that submit button is available when everything is filled out correctly
-def test_submit_button_is_available():
-    contact_page.fill_first_name_field(first_name)
-    contact_page.fill_first_name_field(last_name)
-    contact_page.fill_email_field(email)
-    contact_page.fill_phone_field(phone_number)
-    contact_page.fill_door_count_field(door_count)
-    contact_page.wait_until_submit_button_is_available()
-    assert contact_page.submit_button_is_enabled()
 
