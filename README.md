@@ -44,18 +44,19 @@ To install ChromeDriver, you can download it from the following link: https://si
 - The number of images to scrape can be changed by modifying the `num_images` variable in the script.
 
 
-# Second Case - Proper.AI Contact Form Testing
+# Second Case - Contact Form Testing
 
-This codebase contains test cases for Proper.AI's contact form using Python and Selenium.
+This codebase contains test cases for a website's contact form using Python and Selenium.
 
 ## Dependencies
 
 In order to run this code, you will need to have the following dependencies installed:
 
-- Python 3
-- pip
-- Selenium (`pip install selenium`)
-- pytest (`pip install pytest`)
+- Python 3.x
+- pip (Python package installer)
+- Selenium (`pip3 install selenium`)
+- pytest (`pip3 install pytest`)
+- ChromeDriver
 
 The installation process for these dependencies was already described in the first case section.
 
@@ -71,12 +72,10 @@ This will execute the test cases and output the results in the terminal.
 
 The test cases are located in the `test_contact_form.py` file and include the following:
 
-- Verify that contact form is available
+- Verify that all elements from contact form are displayed
 - Verify that contact form cannot be submitted without name
 - Verify that contact form cannot be submitted without door count
 - Verify that contact form cannot be submitted without phone number
-- Verify that contact form cannot be submitted with invalid phone number
-- Verify that submit button is available when everything is filled out correctly
 
 ## Test data
 
