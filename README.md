@@ -46,7 +46,7 @@ To install ChromeDriver, you can download it from the following link: https://si
 
 # Second Case - Contact Form Testing
 
-This codebase contains test cases for a website's contact form using Python and Selenium.
+This codebase contains test cases for a website's contact form using Python and Selenium. The test suite employs the Page Object Model (POM) design pattern, organizing the test suite into two sections: the pages folder contains page object methods, which encapsulate the functionalities and interactions of the web pages, while the tests folder contains test scripts that utilize these methods to conduct end-to-end testing.
 
 ## Dependencies
 
