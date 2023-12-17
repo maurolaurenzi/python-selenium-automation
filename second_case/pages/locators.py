@@ -1,34 +1,35 @@
 from selenium.webdriver.common.by import By
 
 # Talk with us button
-TALK_WITH_US_BTN = (By.XPATH,"//nav/div/div/button")
+TALK_WITH_US_BTN = (By.XPATH,"//div[@class='nav-col-small side-col']//div[contains(text(),'Talk With Us')]")
 
 # First name input field
-FIRST_NAME_INPUT = (By.XPATH,"//form/div[1]/div/div[1]/input")
+FIRST_NAME_INPUT = (By.ID,"firstname")
 
 # Last name input field
-LAST_NAME_INPUT = (By.XPATH, "//form/div[2]/div/div[1]/input")
+LAST_NAME_INPUT = (By.ID, "lastname")
 
 # Email input field
-EMAIL_INPUT = (By.NAME, "email")
+EMAIL_INPUT = (By.ID, "email")
 
 # Phone input field
-PHONE_INPUT = (By.NAME, "phone")
+PHONE_INPUT = (By.ID, "phone")
 
-# Units input field
-DOOR_COUNT_INPUT = (By.NAME, "units")
+# Asset class field
+ASSET_CLASS_DROPDOWN = (By.ID, "asset-class")
+
+# Door count field
+DOOR_COUNT_INPUT = (By.ID, "Door-Count")
+
+# Used software field
+SOFTWARE_DROPDOWN = (By.XPATH, "//*[@id='software_1__c']")
 
 # Submit button
-SUBMIT_BTN = (By.XPATH,"//form/div[6]/div/button")
+SUBMIT_BTN = (By.XPATH,"//input[@type='submit']")
 
-# Enter name error message
-BLANK_NAME_ERROR = (By.XPATH,"//div/span[text()=\"Please enter first name\"]")
+# Close form button
+CLOSE_BTN = (By.XPATH,"//a[contains(text(),'X Close Form')]")
 
-# Enter phone error message
-BLANK_PHONE_ERROR = (By.XPATH,"//div/span[text()=\"Please enter phone number\"]")
-
-# Blank door count error message
-BLANK_DOOR_COUNT_ERROR = (By.XPATH,"//div/span[text()=\"Please complete this required field\"]")
-
-# Invalid phone error message
-INVALID_PHONE_ERROR = (By.XPATH,"//div/span[text()=\"Please enter valid phone number\"]")
+def dropdown_option(value):
+    asset_option = (By.XPATH, f"//option[@value='{value}']")
+    return asset_option
