@@ -1,6 +1,6 @@
 # First Case - Memes Scraper
 
-This is a Python script that scrapes images from the main page of the icanhas.cheezburger.com website and saves them locally. It uses the Requests library to download and store the images and the Selenium framework to interact with the browser.
+A Python script that scrapes images from the main page of the icanhas.cheezburger.com website and saves them locally. It uses the Requests library to download and store the images and the Selenium framework to interact with the browser.
 
 ## Dependencies
 
