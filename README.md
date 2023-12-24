@@ -42,6 +42,7 @@ To install ChromeDriver, you can download it from the following link: https://ch
 
 - The script will create a 'memes' folder if it doesn't already exist.
 - The number of images to scrape can be changed by modifying the `num_images` variable in the script.
+- You can watch a demo of the tests execution [here](https://vimeo.com/897484932?share=copy).
 
 
 # Second Case - Contact Form Testing
